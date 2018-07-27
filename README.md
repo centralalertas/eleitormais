@@ -1,2 +1,2 @@
 # eleitormais
-App integrado ao Central de Alertas
+App Mobile integrado ao Central de Alertas
