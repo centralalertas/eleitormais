@@ -1,0 +1,31 @@
+<ion-content padding>
+  <div class="logo">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 text-center>
+          <img src="assets/imgs/logo-eleitor-transparente.jpeg" alt="Smiley face" height="100" width="100">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="form-login">
+    <form [formGroup]="formLogin">
+      <ion-item>
+        <ion-input type="text" formControlName="username" placeholder="E-mail" [(ngModel)]="login.username"></ion-input>
+      </ion-item>
+      <ion-item text-center *ngIf="!formLogin.controls.username.valid && formLogin.controls.username.dirty" class="validator-error">
+        Digite seu e-mail
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" formControlName="password" placeholder="Senha" [(ngModel)]="login.password"></ion-input>
+      </ion-item>
+      <ion-item text-center *ngIf="!formLogin.controls.password.valid && formLogin.controls.password.dirty" class="validator-error">
+        Digite sua senha
+      </ion-item>
+      <br>
+      <button ion-button block round [disabled]="formLogin.invalid" (click)="logar()">
+        Entrar
+      </button>
+    </form>
+  </div>
+</ion-content>

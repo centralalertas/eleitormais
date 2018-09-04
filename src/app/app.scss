@@ -1,0 +1,13 @@
+$fa-font-path: "../assets/fonts" !default;
+@import "font-awesome";
+
+i[class^="fa-"],
+ion-icon[class^="fa-"] {
+  font-family: "FontAwesome" !important;
+}
+
+.toast-md .toast-message {
+  color: #ff3333 !important;
+  font-weight: 900;
+  font-size: 12px;
+}

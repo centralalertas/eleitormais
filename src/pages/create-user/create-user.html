@@ -1,0 +1,113 @@
+<header>
+</header>
+<ion-content padding>
+  <div class="form">
+    <form [formGroup]="formUsuario">
+      <ion-list>
+        <ion-item class="item-login">
+          <ion-label stacked>
+            <ion-icon class="fa-user-circle-o"></ion-icon> Nome
+          </ion-label>
+          <ion-input type="text" formControlName="nome" [(ngModel)]="user.nome"></ion-input>
+        </ion-item>
+        <ion-item text-center *ngIf="!formUsuario.controls.nome.valid && formUsuario.controls.nome.dirty" class="validator-error">
+          Digite seu nome!
+        </ion-item>
+        <ion-item class="item-login">
+          <ion-label stacked>
+            <ion-icon class="fa-users"></ion-icon> Sobrenome
+          </ion-label>
+          <ion-input type="text" formControlName="sobreNome" [(ngModel)]="user.sobrenome"></ion-input>
+        </ion-item>
+        <ion-item text-center *ngIf="!formUsuario.controls.sobreNome.valid && formUsuario.controls.sobreNome.dirty" class="validator-error">
+          Digite seu Sobrenome!
+        </ion-item>
+        <ion-item class="item-login">
+          <ion-label stacked>
+            <ion-icon class="fa-phone"></ion-icon> Celular
+          </ion-label>
+          <ion-input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" [brmasker]="{phone: true}"
+            formControlName="celular" [(ngModel)]="user.telefone"></ion-input>
+        </ion-item>
+        <ion-item text-center *ngIf="!formUsuario.controls.celular.valid && formUsuario.controls.celular.dirty" class="validator-error">
+          Digite seu celular!
+        </ion-item>
+        <ion-item class="item-login">
+          <ion-label stacked>
+            <ion-icon class="fa-envelope"></ion-icon> E-mail
+          </ion-label>
+          <ion-input type="text" formControlName="email" [(ngModel)]="user.email"></ion-input>
+        </ion-item>
+        <br>
+      </ion-list>
+      <button ion-button block round [disabled]="formUsuario.invalid && !botao" (click)="cadastrar()">
+        SALVAR
+      </button>
+      <div class="line">
+        <button (click)="enableInputs()" ion-button block round>
+          Mais Campos
+        </button>
+      </div>
+
+
+      <div *ngIf="form">
+        <ion-list>
+          <ion-item>
+            <ion-label stacked>
+              <ion-icon class="fa-phone"></ion-icon> Fone Fixo
+            </ion-label>
+            <ion-input type="tel" [brmasker]="{phone: true}" formControlName="telefone" [(ngModel)]="user.celular"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>
+              <ion-icon class="fa-users"></ion-icon> Sexo
+            </ion-label>
+            <ion-select okText="Selecionar" cancelText="Cancelar" [(ngModel)]="user.sexo" formControlName="sexo">
+              <ion-option value="F">Feminino</ion-option>
+              <ion-option value="M">Masculino</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>
+              <ion-icon class="fa-calendar"></ion-icon> Aniversario
+            </ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" formControlName="aniversario" [(ngModel)]="user.aniversario"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>
+              <ion-icon class="fa-users"></ion-icon> Filhos
+            </ion-label>
+            <ion-select okText="Selecionar" cancelText="Cancelar" [(ngModel)]="user.filho" formControlName="uf">
+              <ion-option value="S">Sim</ion-option>
+              <ion-option value="N">Não</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>
+              <ion-icon class="fa-map-pin"></ion-icon> UF
+            </ion-label>
+            <ion-select okText="Selecionar" (ionChange)="listarMunicipios($event)" cancelText="Cancelar" [(ngModel)]="user.uf" formControlName="uf">
+              <ion-option *ngFor="let estado of estados" value="{{estado.uf}}">{{estado.uf}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item *ngIf="municipios.length > 0">
+            <ion-label stacked>
+              <ion-icon class="fa-map-pin"></ion-icon> Municipios
+            </ion-label>
+            <ion-select okText="Selecionar" cancelText="Cancelar" formControlName="municipio">
+              <ion-option *ngFor="let municipio of municipios" value="{{municipio.Municipio.Id}}">{{municipio.Municipio.Nome}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>
+              <ion-icon class="fa-map-pin"></ion-icon> Grupos
+            </ion-label>
+            <ion-select okText="Selecionar" cancelText="Cancelar" formControlName="municipio">
+              <ion-option *ngFor="let g of grupos" value="{{g.grupo.Grupo.id}}">{{g.grupo.Grupo.nome}}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </div>
+    </form>
+  </div>
+</ion-content>

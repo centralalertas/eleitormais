@@ -1,0 +1,27 @@
+<ion-menu [content]="mycontent">
+  <ion-header>
+    <ion-navbar color="primary">
+      <ion-title>
+        Menu
+      </ion-title>
+      <ion-row>
+        <ion-col>
+          <div class="profile-picture">
+            <!-- <img src="assets/imgs/logo03.png" alt="Profile Picture"> -->
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-navbar>
+  </ion-header>
+  <ion-content>
+    <ion-list no-lines>
+      <button ion-item menuClose (click)="create()">
+        <ion-icon item-start color="primary" class="fa-user-circle-o"></ion-icon>Cadastrar Usuário
+      </button>
+      <button ion-item menuClose (click)="logout()">
+        <ion-icon item-start color="primary" class="fa-sign-out"></ion-icon>Sair
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-nav #mycontent [root]="rootPage"></ion-nav>
