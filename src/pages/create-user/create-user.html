@@ -60,7 +60,7 @@
           </ion-item>
           <ion-item>
             <ion-label stacked>
-              <ion-icon class="fa-users"></ion-icon> Sexo
+              <ion-icon class="fa-venus-mars"></ion-icon> Sexo
             </ion-label>
             <ion-select okText="Selecionar" cancelText="Cancelar" [(ngModel)]="user.sexo" formControlName="sexo">
               <ion-option value="F">Feminino</ion-option>
@@ -94,15 +94,15 @@
             <ion-label stacked>
               <ion-icon class="fa-map-pin"></ion-icon> Municipios
             </ion-label>
-            <ion-select okText="Selecionar" cancelText="Cancelar" formControlName="municipio">
+            <ion-select okText="Selecionar" cancelText="Cancelar" [(ngModel)]="user.cidade" formControlName="municipio">
               <ion-option *ngFor="let municipio of municipios" value="{{municipio.Municipio.Id}}">{{municipio.Municipio.Nome}}</ion-option>
             </ion-select>
           </ion-item>
           <ion-item>
             <ion-label stacked>
-              <ion-icon class="fa-map-pin"></ion-icon> Grupos
+              <ion-icon class="fa fa-users"></ion-icon> Grupos
             </ion-label>
-            <ion-select okText="Selecionar" cancelText="Cancelar" formControlName="municipio">
+            <ion-select multiple="true" okText="Selecionar" [(ngModel)]="user.grupo" cancelText="Cancelar" formControlName="grupo">
               <ion-option *ngFor="let g of grupos" value="{{g.grupo.Grupo.id}}">{{g.grupo.Grupo.nome}}</ion-option>
             </ion-select>
           </ion-item>

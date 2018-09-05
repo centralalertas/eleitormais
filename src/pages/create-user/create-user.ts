@@ -91,6 +91,7 @@ export class CreateUserPage implements OnInit {
       filho: new FormControl(''),
       uf: new FormControl(''),
       municipio: new FormControl(''),
+      grupo: new FormControl('')
     })
   }
 
@@ -152,6 +153,7 @@ export class CreateUserPage implements OnInit {
         if (res.message) {
           loading.dismiss();
           this.formUsuario.reset();
+          this.user = new Usuario();
           let message = "Cadastrado com sucesso!";
           this.success(message);
         }

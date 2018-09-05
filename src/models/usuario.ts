@@ -13,6 +13,7 @@ export class Usuario {
     created?: any
     modified?: any
     send?: number;
-    uf: string;
-    grupo?: any;
+    uf?: string;
+    cidade?: string;
+    grupo?: any = [];
 }

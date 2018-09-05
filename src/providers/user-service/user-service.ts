@@ -30,7 +30,7 @@ export class UserServiceProvider {
   }
 
   listarGrupos(): any {
-    
+
   }
 
   listarUfs(): Observable<any> {
@@ -51,7 +51,9 @@ export class UserServiceProvider {
       "&sexo=" + user.sexo +
       "&aniversario=" + user.aniversario +
       "&filho=" + user.filho +
-      "&uf=" + user.uf;
+      "&uf=" + user.uf +
+      "&cidade=" + user.cidade +
+      "&grupo=" + user.grupo;
     return this.http.post(this.apiUrls.URL + "contatos.json", body, {
       headers: this.getHeader()
     })
