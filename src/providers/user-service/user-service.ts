@@ -29,7 +29,11 @@ export class UserServiceProvider {
     })
   }
 
-  listarGrupos(): any {
+  listarGrupos(user): any {
+    let body  = "username=" + user;
+    return this.http.post(this.apiUrls.URL + "usuarios/gruposUsuario.json", body, {
+      headers: this.getHeader()
+    })
 
   }
 

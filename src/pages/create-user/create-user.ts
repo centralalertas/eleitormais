@@ -1,9 +1,13 @@
-import { AlertController, LoadingController, ToastController } from 'ionic-angular';
-import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Usuario } from '../../models/usuario';
-import { UserServiceProvider } from '../../providers/user-service/user-service';
-import { AppConfig } from '../../providers/app.config';
+import {
+  AlertController,
+  LoadingController,
+  ToastController
+} from "ionic-angular";
+import { Component, OnInit } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { Usuario } from "../../models/usuario";
+import { UserServiceProvider } from "../../providers/user-service/user-service";
+import { AppConfig } from "../../providers/app.config";
 import {
   FormControl,
   Validators,
@@ -12,7 +16,7 @@ import {
 } from "@angular/forms";
 
 import { Storage } from "@ionic/storage";
-import { Grupos } from '../../models/grupos';
+import { Grupos } from "../../models/grupos";
 
 /**
  * Generated class for the CreateUserPage page.
@@ -23,11 +27,10 @@ import { Grupos } from '../../models/grupos';
 
 @IonicPage()
 @Component({
-  selector: 'page-create-user',
-  templateUrl: 'create-user.html',
+  selector: "page-create-user",
+  templateUrl: "create-user.html"
 })
 export class CreateUserPage implements OnInit {
-
   appConfig: any = AppConfig;
 
   form: boolean = false;
@@ -52,9 +55,9 @@ export class CreateUserPage implements OnInit {
     public toastController: ToastController,
     public storage: Storage
   ) {
-    if (this.navParams.get('usuario')) {
-      let usuario = this.navParams.get('usuario');
-      this.user.cliente_id = usuario.cliente_id
+    if (this.navParams.get("usuario")) {
+      let usuario = this.navParams.get("usuario");
+      this.user.cliente_id = usuario.cliente_id;
       this.user.usuario_id = usuario.id;
     }
   }
@@ -66,49 +69,46 @@ export class CreateUserPage implements OnInit {
   }
 
   listarGrupos() {
-    this.storage.get('usuario').then(val => {
-      let grupo: any;
-      let usuario: any;
-      grupo = val;
-      usuario = val.Usuario;
-      delete grupo.Usuario
-      const obj = grupo;
-      const grupos = Object.keys(obj).map(key => ({ grupo: obj[key] }));
-      this.grupos = grupos;
+    this.storage.get("usuario").then(user => {
+      this.userService.listarGrupos(user.Usuario.username).subscribe(res => {
+        console.log(res);
+      });
     });
   }
 
   validarCampos() {
-    let emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+    let emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$";
     this.formUsuario = this.formBuilder.group({
-      nome: new FormControl(this.user.nome, [Validators.required, Validators.minLength(2)]),
-      sobreNome: new FormControl(this.user.sobrenome, [Validators.required, Validators.minLength(2)]),
+      nome: new FormControl(this.user.nome, [
+        Validators.required,
+        Validators.minLength(2)
+      ]),
+      sobreNome: new FormControl(this.user.sobrenome, [
+        Validators.required,
+        Validators.minLength(2)
+      ]),
       celular: new FormControl(this.user.celular),
       email: new FormControl(this.user.email),
-      telefone: new FormControl(''),
-      sexo: new FormControl(''),
-      aniversario: new FormControl(''),
-      filho: new FormControl(''),
-      uf: new FormControl(''),
-      municipio: new FormControl(''),
-      grupo: new FormControl('')
-    })
+      telefone: new FormControl(""),
+      sexo: new FormControl(""),
+      aniversario: new FormControl(""),
+      filho: new FormControl(""),
+      uf: new FormControl(""),
+      municipio: new FormControl(""),
+      grupo: new FormControl("")
+    });
   }
 
   listarMunicipios(event: any) {
-    this.userService.listarMinicipios(this.user.uf).subscribe(
-      res => {
-        this.municipios = res
-      }
-    )
+    this.userService.listarMinicipios(this.user.uf).subscribe(res => {
+      this.municipios = res;
+    });
   }
 
   listarUfs() {
-    this.userService.listarUfs().subscribe(
-      res => {
-        this.estados = res.ufs
-      }
-    )
+    this.userService.listarUfs().subscribe(res => {
+      this.estados = res.ufs;
+    });
   }
 
   success(message: string) {
@@ -121,23 +121,22 @@ export class CreateUserPage implements OnInit {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CreateUserPage');
+    console.log("ionViewDidLoad CreateUserPage");
   }
 
   enableInputs() {
     if (this.form) {
       this.form = false;
-    }
-    else {
+    } else {
       this.form = true;
     }
   }
 
   toastMessage() {
     let toast = this.toastController.create({
-      message: 'NECESSÁRIO PREENCHER O CAMPO CELULAR OU E-MAIL!',
+      message: "NECESSÁRIO PREENCHER O CAMPO CELULAR OU E-MAIL!",
       duration: 3000,
-      position: 'bottom',
+      position: "bottom",
       cssClass: "toast-message"
     });
     toast.present();
@@ -162,14 +161,13 @@ export class CreateUserPage implements OnInit {
         loading.dismiss();
         console.log(error);
       }
-    )
+    );
   }
 
   cadastrar() {
     if (!this.user.telefone && !this.user.email) {
       this.toastMessage();
-    }
-    else if (this.user.telefone || !this.user.email) {
+    } else if (this.user.telefone || !this.user.email) {
       if (this.user.telefone) {
         this.user.telefone.replace(/\D+/g, "");
       }
@@ -178,11 +176,8 @@ export class CreateUserPage implements OnInit {
         this.user.celular = celular;
       }
       this.salvarUsuario(this.user);
-    }
-    else if (this.user.email || !this.user.celular) {
+    } else if (this.user.email || !this.user.celular) {
       this.salvarUsuario(this.user);
     }
-
   }
-
 }
