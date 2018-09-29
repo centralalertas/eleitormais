@@ -70,8 +70,8 @@ export class CreateUserPage implements OnInit {
 
   listarGrupos() {
     this.storage.get("usuario").then(user => {
-      this.userService.listarGrupos(user.Usuario.username).subscribe(res => {
-        console.log(res);
+      this.userService.listarGrupos(user.Usuario.username).subscribe(grupos => {
+        this.grupos = grupos;
       });
     });
   }
