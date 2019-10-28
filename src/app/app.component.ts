@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { Storage } from "@ionic/storage";
 import { Usuario } from '../models/usuario';
+import { TabPage } from '../pages/tab/tab';
 @Component({
   templateUrl: 'app.html'
 })
@@ -34,7 +35,7 @@ export class MyApp {
         if (res) {
           loading.dismiss();
           this.usuario = res;
-          this.rootPage = HomePage;
+          this.rootPage = TabPage;
         } else {
           loading.dismiss();
           this.rootPage = 'LoginPage';

@@ -15,12 +15,26 @@ import { FormsModule } from '@angular/forms';
 import { BrMaskerModule } from 'brmasker-ionic-3';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { SplashTodiPageModule } from '../pages/splash-todi/splash-todi.module';
-import { ComponentsModule } from '../components/components.module';
+import { TabPage } from '../pages/tab/tab';
+import { AlertasPage } from '../pages/alertas/alertas';
+import { CadastroPage } from '../pages/cadastro/cadastro';
+import { CompromissosPage } from '../pages/compromissos/compromissos';
+import { EventosPage } from '../pages/eventos/eventos';
+import { OutrosPage } from '../pages/outros/outros';
+import { HomePageModule } from '../pages/home/home.module';
+import { TabPageModule } from '../pages/tab/tab.module';
+import { EventosPageModule } from '../pages/eventos/eventos.module';
+import { CadastroPageModule } from '../pages/cadastro/cadastro.module';
+import { AlertasPageModule } from '../pages/alertas/alertas.module';
+import { OutrosPageModule } from '../pages/outros/outros.module';
+import { CompromissosPageModule } from '../pages/compromissos/compromissos.module';
+import { NoticiaService } from '../providers/noticia-service/noticia-service';
+import { NoticiaPageModule } from '../pages/noticia/noticia.module';
+import { NoticiaPage } from '../pages/noticia/noticia';
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage
+    MyApp
   ],
   imports: [
     BrowserModule,
@@ -36,19 +50,35 @@ import { ComponentsModule } from '../components/components.module';
       }
     ),
     FormsModule,
-    BrMaskerModule
+    BrMaskerModule, 
+    HomePageModule, 
+    TabPageModule,
+    AlertasPageModule, 
+    CadastroPageModule,
+    EventosPageModule, 
+    OutrosPageModule,
+    CompromissosPageModule, 
+    NoticiaPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage, 
+    TabPage, 
+    AlertasPage,
+    CadastroPage,
+    CompromissosPage,
+    EventosPage,
+    OutrosPage, 
+    NoticiaPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     UserServiceProvider,
-    AuthServiceProvider
+    AuthServiceProvider,
+    NoticiaService
   ]
 })
 export class AppModule { }

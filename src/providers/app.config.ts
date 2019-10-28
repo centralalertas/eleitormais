@@ -4,6 +4,6 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AppConfig {
-  public static URL = 'https://centralalertas.com.br/';
+  public static URL = 'http://centralalertas.com.br/';
   public static telefone = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 }

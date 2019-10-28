@@ -1,3 +1,23 @@
 page-home {
+    ion-slides {
+        height: 300px;
+    }
 
+
+    .image-slide {
+        overflow: hidden;
+        height: 193px;
+    }
+    .swiper-slide img {
+        width: 100%;
+    }
+
+    .lista-noticia ion-avatar {
+        width: 60px;
+        height: 60px;
+    }
+    .item-md ion-avatar ion-img, .item-md ion-avatar img {
+        width: 60px;
+        height: 60px;
+    }
 }

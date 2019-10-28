@@ -62,26 +62,25 @@ export class LoginPage implements OnInit {
     alert.present();
   }
 
-  logar() {
+  async logar() {
     let loading = this.loadingController.create({
       content: "Aguarde..."
     });
     loading.present();
-    this.loginService.logar(this.login).subscribe(
-      res => {
-        if (res.Usuario) {
-          loading.dismiss();
-          this.loginService.setUser(res);
-          this.navCtrl.setRoot('CreateUserPage', { usuario: res });
-        }
-        if (res == '') {
-          loading.dismiss();
-          let message = "Usuário ou senha inválidos";
-          this.erroLogin(message);
-          this.formLogin.reset();
-        }
+    await this.loginService.logar(this.login).then(res => {
+      console.log(res);
+      if (res.Usuario) {
+        this.loginService.setUser(res);
+        this.navCtrl.setRoot('TabPage');
+        //this.navCtrl.setRoot('CreateUserPage', { usuario: res });
       }
-    )
+    }).catch(err => {
+      console.error(err)
+      let message = "Usuário ou senha inválidos";
+      this.erroLogin(message);
+      this.formLogin.reset();
+    })
+    loading.dismiss();
   }
 
 }
